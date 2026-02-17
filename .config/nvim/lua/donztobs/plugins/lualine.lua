@@ -49,12 +49,50 @@ return {
       },
     }
 
+    -- Custom function to get relative path to git root
+    local function get_relative_git_path()
+      local filepath = vim.fn.expand("%:p")
+      if filepath == "" then
+        return ""
+      end
+      
+      -- Get git root directory
+      local git_root = vim.fn.systemlist("git rev-parse --show-toplevel 2>/dev/null")[1]
+      if not git_root or vim.v.shell_error ~= 0 then
+        -- Not in a git repository, return relative path from current directory
+        return vim.fn.fnamemodify(filepath, ":~:.")
+      end
+      
+      -- Make sure git_root ends with path separator
+      git_root = git_root:gsub("/$", "") .. "/"
+      
+      -- Get relative path from git root
+      if filepath:sub(1, #git_root) == git_root then
+        local relative_path = filepath:sub(#git_root + 1)
+        if relative_path == "" then
+          return "[git root]"
+        end
+        return relative_path
+      else
+        -- File is not under git root (shouldn't happen), fall back to relative path
+        return vim.fn.fnamemodify(filepath, ":~:.")
+      end
+    end
+
     -- configure lualine with modified theme
     lualine.setup({
       options = {
         theme = my_lualine_theme,
       },
       sections = {
+        lualine_a = {"mode"},
+        lualine_b = {"branch", "diff", "diagnostics"},
+        lualine_c = {
+          {
+            get_relative_git_path,
+            color = { fg = colors.fg, gui = "bold" },
+          }
+        },
         lualine_x = {
           {
             lazy_status.updates,
@@ -65,6 +103,8 @@ return {
           { "fileformat", symbols = { unix = "" } },
           { "filetype" },
         },
+        lualine_y = {"progress"},
+        lualine_z = {"location"}
       },
     })
   end,

@@ -15,6 +15,7 @@ return {
         "prismals",
         "pyright",
         "eslint",
+        "intelephense", -- php language server
       },
     },
     dependencies = {
