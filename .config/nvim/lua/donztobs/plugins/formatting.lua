@@ -26,6 +26,9 @@ return {
         php = { "phpcbf" },
       },
       formatters = {
+        prettier = {
+          prepend_args = { "--tab-width", "4" },
+        },
         phpcbf = {
           prepend_args = { "--standard=PSR12" },
         },
