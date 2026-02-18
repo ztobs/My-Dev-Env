@@ -31,7 +31,7 @@ wk.add({
   { "<leader>s", group = "Split Window" },
   { "<leader>w", group = "Window" },
   { "<leader>m", group = "Format" },
-  { "<leader>d", group = "Docker" },
+  { "<leader>d", group = "🐋 Docker / 🐛 Xdebug" },
   -- { "<leader>f", group = "🔍 Find" },
   -- { "<leader>g", group = "🌳 Git" },
   -- { "<leader>e", group = "📁 Explorer" },

@@ -8,27 +8,27 @@ return {
     {
       "<leader>dc",
       "<cmd>Telescope docker containers<cr>",
-      desc = "[D]ocker [C]ontainers",
+      desc = "🐋 Containers",
     },
     {
       "<leader>di",
       "<cmd>Telescope docker images<cr>",
-      desc = "[D]ocker [I]mages",
+      desc = "🐋 Images",
     },
     {
       "<leader>dv",
       "<cmd>Telescope docker volumes<cr>",
-      desc = "[D]ocker [V]olumes",
+      desc = "🐋 Volumes",
     },
     {
       "<leader>dn",
       "<cmd>Telescope docker networks<cr>",
-      desc = "[D]ocker [N]etworks",
+      desc = "🐋 Networks",
     },
     {
       "<leader>dp",
       "<cmd>Telescope docker compose<cr>",
-      desc = "[D]ocker [C]ompose",
+      desc = "🐋 Compose",
     },
   },
 }
