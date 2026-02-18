@@ -6,9 +6,22 @@ The following are configured:
   - Oh My Zsh
     - p10k theme
 - Tmux
-  - xxx plugins
+  - TPM (Tmux Plugin Manager)
+  - vim-tmux-navigator
+  - tmux-tokyo-night theme
+  - tmux-resurrect & tmux-continuum
 - NeoVim
-  - xxx pugins
+  - **LSP & Completion:** Mason, nvim-lspconfig, nvim-cmp
+  - **Debugging:** nvim-dap, nvim-dap-ui, mason-nvim-dap
+  - **Formatting & Linting:** conform.nvim, nvim-lint
+  - **Syntax:** nvim-treesitter, nvim-ts-autotag, nvim-treesitter-textobjects
+  - **File Navigation:** telescope.nvim, nvim-tree, flash.nvim
+  - **Git Integration:** lazygit, neogit, gitsigns, trouble.nvim
+  - **UI/UX:** lualine, bufferline, alpha (dashboard), which-key, dressing.nvim
+  - **Editing:** vim-surround, nvim-autopairs, substitute, yanky, undotree
+  - **Session:** auto-session, vim-maximizer
+  - **Extras:** todo-comments, indent-blankline, AI integration, docker support
+  - **Theme:** tokyo-night colorscheme
 
 ## Install Prerequisites
 
@@ -98,3 +111,45 @@ p10k configure
 ```
 
 Follow the instructions for the PowerLevel10K configuration to make your terminal look as desired.
+
+## Install Tmux Plugins
+
+After cloning this repo, install tmux plugins:
+
+```bash
+~/.tmux/plugins/tpm/bin/install_plugins
+```
+
+Or inside a tmux session: press `Ctrl+a` then `I` (capital i)
+
+## PHP Development Tools
+
+### For Debugging (Xdebug)
+
+```bash
+sudo apt install php-xdebug
+```
+
+Configure Xdebug in `/etc/php/<version>/fpm/conf.d/20-xdebug.ini`:
+
+```ini
+zend_extension=xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_port=9003
+xdebug.client_host=localhost
+```
+
+### For Code Formatting
+
+Install via Mason in nvim (recommended):
+
+```vim
+:MasonInstall phpcbf
+```
+
+Or install on host system:
+
+```bash
+sudo apt install php-codesniffer
+```
