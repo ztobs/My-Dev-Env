@@ -153,3 +153,13 @@ Or install on host system:
 ```bash
 sudo apt install php-codesniffer
 ```
+
+## Shared Shell Configuration
+
+Create `~/.myrc` for shared custom settings, aliases, and environment variables that will be sourced by both `.zshrc` and `.bashrc`:
+
+```bash
+touch ~/.myrc
+```
+
+Add your shared configurations to this file
