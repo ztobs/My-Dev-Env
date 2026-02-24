@@ -112,9 +112,21 @@ p10k configure
 
 Follow the instructions for the PowerLevel10K configuration to make your terminal look as desired.
 
-## Install Tmux Plugins
+## Install Tmux Plugin Manager (TPM) & Plugins
 
-After cloning this repo, install tmux plugins:
+First, install TPM if not already installed:
+
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Then reload tmux config:
+
+```bash
+tmux source ~/.tmux.conf
+```
+
+Install plugins either via command line:
 
 ```bash
 ~/.tmux/plugins/tpm/bin/install_plugins

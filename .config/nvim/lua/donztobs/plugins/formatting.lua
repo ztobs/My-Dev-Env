@@ -24,6 +24,7 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         php = { "phpcbf" },
+        vue = { "prettier" },
       },
       formatters = {
         prettier = {

@@ -4,7 +4,7 @@ return {
     opts = {
       -- list of servers for mason to install
       ensure_installed = {
-        "ts_ls",
+        "vtsls", -- typescript server (replaces ts_ls, required by vue_ls)
         "html",
         "cssls",
         "tailwindcss",
@@ -16,6 +16,7 @@ return {
         "pyright",
         "eslint",
         "intelephense", -- php language server
+        "vue_ls", -- vue language server (formerly volar)
       },
     },
     dependencies = {

@@ -36,6 +36,7 @@ return {
         "query",
         "vimdoc",
         "c",
+        "vue",
       },
       incremental_selection = {
         enable = true,

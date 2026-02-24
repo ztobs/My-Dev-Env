@@ -13,5 +13,10 @@ return {
     keymap.set("n", "<leader>rr", substitute.line, { desc = "Substitute line" })
     keymap.set("n", "<leader>R", substitute.eol, { desc = "Substitute to end of line" })
     keymap.set("x", "<leader>r", substitute.visual, { desc = "Substitute in visual mode" })
+    -- Paste-replace with clipboard: <leader>rc + motion
+    -- Usage: <leader>rc"  <leader>rc'  <leader>rc(  <leader>rc[  <leader>rc{  <leader>rcw  etc.
+    keymap.set("n", "<leader>rc", function()
+      substitute.operator({ register = "+" })
+    end, { desc = "Paste replace with clipboard (motion)" })
   end,
 }
