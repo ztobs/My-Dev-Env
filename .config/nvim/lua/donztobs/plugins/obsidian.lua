@@ -1,7 +1,19 @@
 return {
   "epwalsh/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
-  lazy = false, -- Load on startup so keymaps are always available
+  lazy = true, -- Lazy load for better performance
+  ft = "markdown", -- Only load when opening markdown files
+  keys = {
+    { "<leader>Nn", desc = "New Obsidian note" },
+    { "<leader>Ns", desc = "Search Obsidian notes" },
+    { "<leader>Nq", desc = "Quick switch Obsidian notes" },
+    { "<leader>No", desc = "Open notes directory" },
+    { "<leader>Nt", desc = "Open today's note" },
+    { "<leader>Ny", desc = "Open yesterday's note" },
+    { "<leader>Nb", desc = "Show backlinks" },
+    { "<leader>Nl", desc = "Show links" },
+    { "<leader>Nf", desc = "Follow link" },
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
