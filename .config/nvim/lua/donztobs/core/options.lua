@@ -39,6 +39,9 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- conceallevel for obsidian.nvim
+opt.conceallevel = 1
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Flash yanked text",
   group = vim.api.nvim_create_augroup("FlashYank", { clear = true }),

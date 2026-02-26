@@ -200,6 +200,40 @@ When using Telescope's `live_grep` (`<leader>fs`), you can dynamically filter re
 
 ---
 
+## NeoVim Obsidian Notes Configuration
+
+### Quick Note-Taking with obsidian.nvim
+
+Obsidian.nvim integrates markdown note-taking directly into Neovim, storing notes in `~/.obsidian/neovim/`.
+
+**Keybindings:**
+- `<leader>Nn` - Create a new note (supports paths like `folder/note`)
+- `<leader>Ns` - Search content in all notes (live grep)
+- `<leader>Nq` - Quick switch/find notes by filename
+- `<leader>No` - Open notes directory picker
+- `<leader>Nt` - Open today's daily note
+- `<leader>Ny` - Open yesterday's daily note
+- `<leader>Nb` - Show backlinks to current note
+- `<leader>Nl` - Show all links in current note
+- `<leader>Nf` - Follow link under cursor
+
+**Creating Notes with Subdirectories:**
+When creating a new note, you can include a path to organize notes into folders:
+- `test` → Creates `~/.obsidian/neovim/TIMESTAMP-test.md`
+- `work/meeting` → Creates `~/.obsidian/neovim/work/TIMESTAMP-meeting.md`
+- `projects/ideas/new` → Creates `~/.obsidian/neovim/projects/ideas/TIMESTAMP-new.md`
+
+**Markdown Features:**
+- Wiki-style links: `[[Note Name]]`
+- Checkboxes with icons (toggle with `<leader>ch`)
+- Smart Enter key (follow links or toggle checkboxes)
+- `gf` to follow wiki/markdown links
+- Auto-completion with nvim-cmp integration
+
+**Configuration:** `~/.config/nvim/lua/donztobs/plugins/obsidian.lua`
+
+---
+
 ## NeoVim LSP Configuration
 
 ### Supported Languages & LSP Servers
