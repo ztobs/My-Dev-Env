@@ -200,6 +200,37 @@ When using Telescope's `live_grep` (`<leader>fs`), you can dynamically filter re
 
 ---
 
+## NeoVim File Management
+
+### File Duplication
+
+Quickly duplicate any open file without navigating through the file tree:
+
+**Keymap:** `<leader>fd` (File Duplicate)  
+**Command:** `:DuplicateFile`
+
+**How it works:**
+1. Press `<leader>fd` while editing any file
+2. Enter the new filename (defaults to current filename)
+3. The file is duplicated in the same directory
+4. The new file opens automatically
+
+**Example:**
+- Editing: `/home/user/project/config.php`
+- Press `<leader>fd`
+- Type: `config-backup.php`
+- Result: Creates and opens `/home/user/project/config-backup.php`
+
+**Features:**
+- Works on any open file (no nvim-tree navigation needed)
+- Prevents overwriting existing files
+- Shows success/error notifications
+- Automatically opens the duplicated file
+
+**Configuration:** `~/.config/nvim/lua/donztobs/plugins/nvim-tree.lua`
+
+---
+
 ## NeoVim Obsidian Notes Configuration
 
 ### Quick Note-Taking with obsidian.nvim
