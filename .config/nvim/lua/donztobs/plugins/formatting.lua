@@ -14,7 +14,7 @@ return {
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         svelte = { "prettier" },
-        css = { "prettier" },
+        css = { "prettier_css" },
         html = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
@@ -29,6 +29,11 @@ return {
       formatters = {
         prettier = {
           prepend_args = { "--tab-width", "4" },
+        },
+        -- Custom prettier for CSS with 2-space indentation
+        prettier_css = {
+          inherit = true,
+          prepend_args = { "--tab-width", "2" },
         },
         phpcbf = {
           prepend_args = { "--standard=PSR12" },

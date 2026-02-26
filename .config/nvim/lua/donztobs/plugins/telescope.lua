@@ -20,6 +20,27 @@ return {
       open_trouble_qflist = function(prompt_bufnr)
         trouble.toggle("quickfix")
       end,
+      set_glob_pattern = function(prompt_bufnr)
+        local action_state = require("telescope.actions.state")
+        local current_line = action_state.get_current_line()
+        
+        actions.close(prompt_bufnr)
+        
+        vim.schedule(function()
+          local prompt = vim.fn.input("Glob pattern > ")
+          if prompt and prompt ~= "" then
+            require("telescope.builtin").live_grep({
+              prompt_title = "Live Grep (pattern: " .. prompt .. ")",
+              glob_pattern = prompt,
+              default_text = current_line,
+            })
+          else
+            require("telescope.builtin").live_grep({
+              default_text = current_line,
+            })
+          end
+        end)
+      end,
     })
 
     telescope.setup({
@@ -31,6 +52,7 @@ return {
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
             ["<C-t>"] = trouble_telescope.open,
+            ["<C-g>"] = custom_actions.set_glob_pattern, -- set file pattern filter
           },
         },
       },
