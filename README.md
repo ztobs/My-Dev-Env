@@ -179,145 +179,39 @@ Add your shared configurations to this file
 
 ---
 
-## NeoVim Telescope Configuration
+## NeoVim Key Features
 
-### File Pattern Filtering in Live Grep
+### Telescope
+- `<Ctrl+g>` (in live_grep) - Filter by file pattern (e.g., `*.php`, `**/*.vue`)
 
-When using Telescope's `live_grep` (`<leader>fs`), you can dynamically filter results by file pattern:
+### File Management
+- `<leader>fd` - Duplicate current file
 
-1. Open live grep: `<leader>fs`
-2. Press `<Ctrl+g>` while in the picker
-3. Enter a glob pattern (e.g., `*.php`, `**/*.vue`, `*.{js,ts}`)
-4. The search will refresh and only show results from matching files
-
-**Common Pattern Examples:**
-- `*.php` - All PHP files in current directory
-- `**/*.vue` - All Vue files recursively
-- `*.{js,ts}` - All JavaScript and TypeScript files
-- `src/**/*.lua` - All Lua files under src directory
-
-**Configuration:** `~/.config/nvim/lua/donztobs/plugins/telescope.lua`
-
----
-
-## NeoVim File Management
-
-### File Duplication
-
-Quickly duplicate any open file without navigating through the file tree:
-
-**Keymap:** `<leader>fd` (File Duplicate)  
-**Command:** `:DuplicateFile`
-
-**How it works:**
-1. Press `<leader>fd` while editing any file
-2. Enter the new filename (defaults to current filename)
-3. The file is duplicated in the same directory
-4. The new file opens automatically
-
-**Example:**
-- Editing: `/home/user/project/config.php`
-- Press `<leader>fd`
-- Type: `config-backup.php`
-- Result: Creates and opens `/home/user/project/config-backup.php`
-
-**Features:**
-- Works on any open file (no nvim-tree navigation needed)
-- Prevents overwriting existing files
-- Shows success/error notifications
-- Automatically opens the duplicated file
-
-**Configuration:** `~/.config/nvim/lua/donztobs/plugins/nvim-tree.lua`
-
----
-
-## NeoVim Obsidian Notes Configuration
-
-### Quick Note-Taking with obsidian.nvim
-
-Obsidian.nvim integrates markdown note-taking directly into Neovim, storing notes in `~/.obsidian/neovim/`.
-
-**Keybindings:**
-- `<leader>Nn` - Create a new note (supports paths like `folder/note`)
-- `<leader>Ns` - Search content in all notes (live grep)
-- `<leader>Nq` - Quick switch/find notes by filename
-- `<leader>No` - Open notes directory picker
-- `<leader>Nt` - Open today's daily note
-- `<leader>Ny` - Open yesterday's daily note
-- `<leader>Nb` - Show backlinks to current note
-- `<leader>Nl` - Show all links in current note
+### Obsidian Notes (`~/.obsidian/neovim/`)
+- `<leader>Nn` - New note (supports paths: `folder/note`)
+- `<leader>Ns` - Search notes content
+- `<leader>Nq` - Quick switch notes
+- `<leader>No` - Open notes directory
+- `<leader>Nt` - Today's daily note
+- `<leader>Ny` - Yesterday's daily note
+- `<leader>Nb` - Show backlinks
+- `<leader>Nl` - Show links
 - `<leader>Nf` - Follow link under cursor
 
-**Creating Notes with Subdirectories:**
-When creating a new note, you can include a path to organize notes into folders:
-- `test` → Creates `~/.obsidian/neovim/TIMESTAMP-test.md`
-- `work/meeting` → Creates `~/.obsidian/neovim/work/TIMESTAMP-meeting.md`
-- `projects/ideas/new` → Creates `~/.obsidian/neovim/projects/ideas/TIMESTAMP-new.md`
-
-**Markdown Features:**
-- Wiki-style links: `[[Note Name]]`
-- Checkboxes with icons (toggle with `<leader>ch`)
-- Smart Enter key (follow links or toggle checkboxes)
-- `gf` to follow wiki/markdown links
-- Auto-completion with nvim-cmp integration
-
-**Configuration:** `~/.config/nvim/lua/donztobs/plugins/obsidian.lua`
-
 ---
 
-## NeoVim LSP Configuration
+## NeoVim LSP & Formatting
 
-### Supported Languages & LSP Servers
-
-| Language | LSP Server | Features |
-|----------|-----------|----------|
-| **Vue** | `vue_ls` (Volar) + `vtsls` | Go-to-definition, type checking, auto-completion in `.vue` files |
-| **TypeScript/JavaScript** | `vtsls` | Full TypeScript support, works with Vue |
-| **PHP** | `intelephense` | WordPress-aware PHP development with WordPress stubs |
-| **HTML/CSS** | `html`, `cssls` | HTML and CSS support |
-| **Tailwind CSS** | `tailwindcss` | Tailwind class completion |
-| **Lua** | `lua_ls` | Neovim config development |
-| **Python** | `pyright` | Python type checking |
-
-### Vue.js Development Setup
-
-**Configuration Date:** February 24, 2026
-
-Vue LSP uses **Volar 3.0+ (Hybrid Mode)** which requires both:
-- `vtsls` - TypeScript server with Vue plugin support
-- `vue_ls` - Vue Language Server (Volar)
-
-#### Key Configuration Files:
-- `~/.config/nvim/lua/donztobs/plugins/lsp/mason.lua` - LSP server installation
-- `~/.config/nvim/lua/donztobs/plugins/lsp/lsp.lua` - LSP server configuration  
-- `~/.config/nvim/lua/donztobs/plugins/treesitter.lua` - Vue syntax highlighting
-- `~/.config/nvim/lua/donztobs/plugins/formatting.lua` - Vue file formatting
-
-#### What's Configured:
-
-1. **vtsls with Vue TypeScript Plugin**
-   - Handles TypeScript in Vue files
-   - Global plugin configuration for `@vue/typescript-plugin`
-   - Auto-attaches to `.vue`, `.ts`, `.js` files
-
-2. **vue_ls (Volar)**
-   - Vue-specific language features
-   - Component intellisense
-   - Template type checking
-   - Forwards TypeScript requests to vtsls
-
-3. **Vue Treesitter Parser**
-   - Syntax highlighting for `<template>`, `<script>`, `<style>`
-   - Code folding and indentation
-
-4. **Prettier Formatting**
-   - Auto-formats `.vue` files
-   - Configured with 4-space tabs
+### Supported Languages
+- **Vue** - `vue_ls` (Volar) + `vtsls` (TypeScript)
+- **TypeScript/JavaScript** - `vtsls`
+- **PHP** - `intelephense` (WordPress-aware)
+- **HTML/CSS** - `html`, `cssls`
+- **Tailwind CSS** - `tailwindcss`
+- **Lua** - `lua_ls`
+- **Python** - `pyright`
 
 ### LSP Keybindings
-
-Works for all LSP-enabled files (PHP, JS/TS, Vue):
-
 | Key | Action |
 |-----|--------|
 | `gd` | Go to definition |
@@ -329,65 +223,16 @@ Works for all LSP-enabled files (PHP, JS/TS, Vue):
 | `[d` | Previous diagnostic |
 | `]d` | Next diagnostic |
 
-### Formatting Keybindings
-
+### Formatting
 | Key | Action |
 |-----|--------|
 | `<leader>mp` | Format file/selection |
 | `<leader>mt` | Toggle format on save |
 
-**Note:** Format on save is OFF by default. Enable with `<leader>mt`.
+**Note:** Format on save is OFF by default.
 
-### Verifying Vue LSP
-
-When you open a `.vue` file:
-
-1. Run `:LspInfo` in Neovim
-2. You should see both:
-   - `vtsls` (TypeScript server)
-   - `vue_ls` (Vue language server)
-
-3. Test features:
-   - Hover over a component name - press `K`
-   - Go to definition - press `gd` on a prop or function
-   - Auto-complete - start typing and wait for suggestions
-
-### Troubleshooting Vue LSP
-
-#### Error: "Could not find vtsls or ts_ls"
-
-**Solution:**
-1. Completely close all Neovim instances
-2. Reopen Neovim
-3. Open a `.vue` file
-4. Check `:LspInfo` - both servers should attach
-
-#### Reinstalling LSP Servers
-
-```vim
-:Mason          " Open Mason
-" Use 'i' to install, 'u' to update, 'X' to uninstall
-```
-
-Required packages:
-- `vtsls`
-- `vue-language-server`
-- `prettier`
-
-#### Check Health
-
-```vim
-:checkhealth mason
-:checkhealth lsp
-```
-
-### Manual LSP Installation
-
-If Mason doesn't auto-install:
-
-```bash
-# Install globally with npm (alternative)
-npm install -g @vue/language-server vtsls typescript
-```
-
-Then restart Neovim.
+### Troubleshooting
+- `:LspInfo` - Check active LSP servers
+- `:Mason` - Install/update LSP servers
+- `:checkhealth mason` - Verify Mason setup
+- `:checkhealth lsp` - Verify LSP setup
