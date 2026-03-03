@@ -15,7 +15,7 @@ The following are configured:
   - **Debugging:** nvim-dap, nvim-dap-ui, mason-nvim-dap
   - **Formatting & Linting:** conform.nvim, nvim-lint
   - **Syntax:** nvim-treesitter, nvim-ts-autotag, nvim-treesitter-textobjects
-  - **File Navigation:** telescope.nvim, nvim-tree, flash.nvim
+  - **File Navigation:** telescope.nvim, nvim-tree, flash.nvim, arrow.nvim
   - **Git Integration:** lazygit, neogit, gitsigns, trouble.nvim
   - **UI/UX:** lualine, bufferline, alpha (dashboard), which-key, dressing.nvim
   - **Editing:** vim-surround, nvim-autopairs, substitute, yanky, undotree
@@ -186,6 +186,14 @@ Add your shared configurations to this file
 
 ### File Management
 - `<leader>fd` - Duplicate current file
+
+### Arrow (File Bookmarking)
+- `;` - Open arrow menu (manage all bookmarks)
+  - Inside menu: `1-9` quick select, `s` toggle, `d` delete mode, `v` vertical split, `-` horizontal split
+- `<Ctrl+s>` - Quick toggle bookmark on current file
+- `H` - Previous bookmarked file
+- `L` - Next bookmarked file
+- `m` - Buffer-local bookmarks menu
 
 ### Obsidian Notes (`~/.obsidian/neovim/`)
 - `<leader>Nn` - New note (supports paths: `folder/note`)
