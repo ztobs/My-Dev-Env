@@ -195,6 +195,12 @@ Add your shared configurations to this file
 - `L` - Next bookmarked file
 - `m` - Buffer-local bookmarks menu
 
+### Git
+- `<leader>ch` - Preview changes in current line/hunk
+- `<leader>gd` - Diff this (gitsigns)
+- `<leader>gp` - Preview hunk
+- `]h` / `[h` - Next/previous hunk
+
 ### Obsidian Notes (`~/.obsidian/neovim/`)
 - `<leader>Nn` - New note (supports paths: `folder/note`)
 - `<leader>Ns` - Search notes content
