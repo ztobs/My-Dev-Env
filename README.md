@@ -10,6 +10,7 @@ The following are configured:
   - vim-tmux-navigator
   - tmux-tokyo-night theme
   - tmux-resurrect & tmux-continuum
+  - Wayland clipboard integration via `wl-clipboard`
 - NeoVim
   - **LSP & Completion:** Mason, nvim-lspconfig, nvim-cmp
   - **Debugging:** nvim-dap, nvim-dap-ui, mason-nvim-dap
@@ -134,6 +135,16 @@ Install plugins either via command line:
 ```
 
 Or inside a tmux session: press `Ctrl+a` then `I` (capital i)
+
+## Tmux Clipboard (Wayland)
+
+Install `wl-clipboard` for system clipboard support:
+
+```bash
+sudo apt install wl-clipboard
+```
+
+The config uses `copy-pipe-and-cancel "wl-copy"` so yanking with `y` or mouse drag in copy mode writes to the system clipboard.
 
 ## PHP Development Tools
 
