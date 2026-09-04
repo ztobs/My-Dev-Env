@@ -12,6 +12,17 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
+-- 4-space indentation for filetypes that follow PSR-12 / PEP-8
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Use 4-space indentation for php and python",
+  pattern = { "php", "python" },
+  callback = function()
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.expandtab = true
+  end,
+})
+
 opt.wrap = false
 
 -- search settings
