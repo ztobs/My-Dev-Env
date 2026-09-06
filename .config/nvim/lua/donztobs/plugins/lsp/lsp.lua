@@ -82,11 +82,9 @@ return {
 
     -- Configure intelephense for PHP/WordPress
     vim.lsp.config.intelephense = {
-      default_config = {
-        cmd = { "intelephense", "--stdio" },
-        filetypes = { "php" },
-        root_markers = { "composer.json", ".git", "wp-config.php" },
-      },
+      cmd = { "intelephense", "--stdio" },
+      filetypes = { "php" },
+      root_markers = { "composer.json", "wp-config.php", ".git" },
       settings = {
         intelephense = {
           stubs = {
