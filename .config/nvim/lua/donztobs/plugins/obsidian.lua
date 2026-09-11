@@ -17,7 +17,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
-    "nvim-treesitter/nvim-treesitter",
+    { "nvim-treesitter/nvim-treesitter", branch = "main" },
   },
   config = function()
     -- Create notes directory if it doesn't exist
