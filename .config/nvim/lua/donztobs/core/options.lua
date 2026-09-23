@@ -12,14 +12,39 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
--- 4-space indentation for filetypes that follow PSR-12 / PEP-8
+-- Per-filetype indentation. Global default is 2 spaces (see above); only
+-- languages whose convention differs need to be listed here.
+local indent_4 = {
+  "python", "php", "java", "c", "cpp", "cs", "rust", "kotlin", "swift",
+  "objc", "perl", "sql", "julia", "erlang",
+}
+local indent_tab = { "go", "gomod", "gosum", "make" }
+
+local four, tabs = {}, {}
+for _, ft in ipairs(indent_4) do
+  four[ft] = true
+end
+for _, ft in ipairs(indent_tab) do
+  tabs[ft] = true
+end
+
 vim.api.nvim_create_autocmd("FileType", {
-  desc = "Use 4-space indentation for php and python",
-  pattern = { "php", "python" },
-  callback = function()
-    vim.bo.tabstop = 4
-    vim.bo.shiftwidth = 4
-    vim.bo.expandtab = true
+  desc = "Set indentation width per filetype",
+  callback = function(ev)
+    local buf = ev.buf
+    if tabs[vim.bo[buf].filetype] then
+      vim.bo[buf].expandtab = false
+      vim.bo[buf].tabstop = 4
+      vim.bo[buf].shiftwidth = 4
+    elseif four[vim.bo[buf].filetype] then
+      vim.bo[buf].expandtab = true
+      vim.bo[buf].tabstop = 4
+      vim.bo[buf].shiftwidth = 4
+    else
+      vim.bo[buf].expandtab = true
+      vim.bo[buf].tabstop = 2
+      vim.bo[buf].shiftwidth = 2
+    end
   end,
 })
 

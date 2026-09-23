@@ -14,7 +14,7 @@ return {
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         svelte = { "prettier" },
-        css = { "prettier_css" },
+        css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
@@ -27,14 +27,8 @@ return {
         vue = { "prettier" },
       },
       formatters = {
-        prettier = {
-          prepend_args = { "--tab-width", "4" },
-        },
-        -- Custom prettier for CSS with 2-space indentation
-        prettier_css = {
-          inherit = true,
-          prepend_args = { "--tab-width", "2" },
-        },
+        -- Let prettier use its own default (2 spaces) or the project's
+        -- .prettierrc / .editorconfig instead of forcing a width.
         phpcbf = {
           prepend_args = { "--standard=PSR12" },
         },

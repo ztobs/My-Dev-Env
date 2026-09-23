@@ -2,6 +2,10 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
+      -- vtsls handles TS/JS; exclude ts_ls to avoid duplicate completions
+      automatic_enable = {
+        exclude = { "ts_ls" },
+      },
       -- list of servers for mason to install
       ensure_installed = {
         "vtsls", -- typescript server (replaces ts_ls, required by vue_ls)
