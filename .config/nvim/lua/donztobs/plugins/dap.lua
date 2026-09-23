@@ -110,6 +110,41 @@ return {
       vim.keymap.set("n", "<leader>de", function() require("dapui").eval() end, { desc = "📝 Eval" })
       vim.keymap.set("n", "<leader>dt", function() require("dap").terminate() end, { desc = "⏹️ Terminate" })
       vim.keymap.set("n", "<leader>du", function() require("dapui").toggle() end, { desc = "🔄 Toggle UI" })
+
+      -- TypeScript / JavaScript (via js-debug-adapter)
+      local js_debug_path = vim.fn.stdpath("data")
+        .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
+
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          args = { js_debug_path, "${port}" },
+        },
+      }
+
+      local js_languages = { "typescript", "javascript", "typescriptreact", "javascriptreact" }
+      for _, language in ipairs(js_languages) do
+        dap.configurations[language] = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "🚀 Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+            runtimeExecutable = "node",
+          },
+          {
+            type = "pwa-node",
+            request = "attach",
+            name = "🔗 Attach to process",
+            processId = require("dap.utils").pick_process,
+            cwd = "${workspaceFolder}",
+          },
+        }
+      end
     end,
   },
   {
@@ -143,6 +178,7 @@ return {
       handlers = {},
       ensure_installed = {
         "php-debug-adapter",
+        "js-debug-adapter",
       },
     },
   },
