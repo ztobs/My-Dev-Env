@@ -145,6 +145,46 @@ return {
           },
         }
       end
+
+      -- TypeScript: run `tsc --build` before launching (VS Code preLaunchTask equivalent)
+      local function build_ts()
+        local local_tsc = vim.fn.getcwd() .. "/node_modules/.bin/tsc"
+        local cmd
+        if vim.fn.executable(local_tsc) == 1 then
+          -- prefer the project's own TypeScript version
+          cmd = { local_tsc, "--build", "tsconfig.json" }
+        elseif vim.fn.executable("tsc") == 1 then
+          -- globally installed TypeScript
+          cmd = { "tsc", "--build", "tsconfig.json" }
+        else
+          -- avoid npm's decoy `tsc` package
+          cmd = { "npx", "--yes", "--package", "typescript", "tsc", "--build", "tsconfig.json" }
+        end
+        local out = vim.fn.system(cmd)
+        if vim.v.shell_error ~= 0 then
+          vim.notify("tsc build failed:\n" .. out, vim.log.levels.ERROR)
+          return dap.ABORT
+        end
+        vim.notify("tsc build succeeded", vim.log.levels.INFO)
+        return "tsc: build - tsconfig.json"
+      end
+
+      for _, language in ipairs({ "typescript", "typescriptreact" }) do
+        table.insert(dap.configurations[language], {
+          type = "pwa-node",
+          request = "launch",
+          name = "🚀 Launch TS (tsc build first)",
+          program = function()
+            local rel = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+            local dist = rel:gsub("^src/", "dist/"):gsub("%.tsx?$", ".js")
+            return vim.fn.getcwd() .. "/" .. dist
+          end,
+          outFiles = { "${workspaceFolder}/dist/**/*.js" },
+          sourceMaps = true,
+          cwd = "${workspaceFolder}",
+          preLaunchTask = build_ts,
+        })
+      end
     end,
   },
   {
